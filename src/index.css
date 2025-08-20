@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+  @apply bg-no-repeat bg-cover bg-center min-h-screen;
+  background-image: url("./assets/bg.jpg");
+  color: #fff;
+}
