@@ -1,69 +1,30 @@
-# React + TypeScript + Vite
+# Como rodar o projeto?
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Para rodar o projeto você vai precisar:
 
-Currently, two official plugins are available:
+- Crie uma pasta na sua de trabalho e arreste ela para o icone do vscode
+- No vscode use o comando Crtl + Shift + " para abrir o terminal no vscode
+## Comandos para rodar o projeto no terminal
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+git clone https://github.com/Genio-Quiz/Frontend #Faça isso para clonar o repo no seu pc
+cd Frontend # para abrir no seu a pasta nov que foi criada
+npm install node # isso serve para instalar o node_modules no projeto
+npm run dev # Esse é um comando para abrir o projeto no navegador, clique no link que aparece no terminal para abrir a pagina
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+# Como dar commit?
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Para dar commit você vai precisar:
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+No vscode use o comando Crtl + Shift + " para abrir o terminal no vscode
+
+```bash
+cd Frontend #Só de esse comando se você ainda não está na pasta
+git init #Isso vai iniciar o git
+git remote add origin https://github.com/Genio-Quiz/Frontend 
+git add .
+git commit -m "docs: insira mensagem"
+git checkout -b dev
+git push -u origin dev
 ```
