@@ -17,7 +17,7 @@ npm run dev # Esse é um comando para abrir o projeto no navegador, clique no li
 
 Para dar commit você vai precisar:
 
--No vscode use o comando Crtl + Shift + " para abrir o terminal no vscode
+- No vscode use o comando Crtl + Shift + " para abrir o terminal no vscode
 
 ```bash
 cd Frontend #Só de esse comando se você ainda não está na pasta
