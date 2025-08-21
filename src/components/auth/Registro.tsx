@@ -8,8 +8,10 @@ import {
   FaFacebook,
 } from "react-icons/fa";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
 
@@ -23,7 +25,7 @@ const Login = () => {
 <span className="text-white text-3xl">Einstein Quiz</span>
         <h1 className="text-lg md:text-xl font-semibold">Entrar</h1>
         <p className="text-xs md:text-sm text-gray-500 text-center">
-          Não tem uma conta? <span className="text-white">Crie uma</span>
+          Não tem uma conta? <span className="text-white cursor-pointer hover:text-blue-400" onClick={()=>navigate("/signup")}>Crie uma</span>
         </p>
         <div className="w-full flex flex-col gap-3">
           <div className="w-full flex items-center bg-gray-800 p-2 rounded-xl gap-2">
@@ -55,7 +57,7 @@ const Login = () => {
           </div>
         </div>
         <p className="text-xs md:text-sm text-gray-500">
-          Esqueceu sua senha? <span className="text-white">Redefina</span>
+          Esqueceu sua senha? <span className="text-white cursor-pointer hover:text-blue-400">Redefina</span>
         </p>
 
         <button className="w-full bg-blue-600 p-2 rounded-xl mt-3 hover:bg-blue-700 text-sm md:text-base">
