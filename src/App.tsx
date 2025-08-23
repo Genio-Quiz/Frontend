@@ -1,16 +1,20 @@
 import './App.css'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Signup from './components/auth/Cadastro'
-import Login from './components/auth/Registro'
+import Home from './components/Home'
+import Signup from './components/auth/Signup'
+import Signin from './components/auth/Signin'
+import Equipe from './components/Equipe'
 
 function App() {
 
   return (
       <Router>
       <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="*" element={<Login />} /> {/* rota default */}
+        <Route path="/Home" element={<Home />} />
+        <Route path="/Signin" element={<Signin />} />
+        <Route path="/Signup" element={<Signup />} />
+        <Route path="/Equipe" element={<Equipe />} />
+        <Route path="*" element={<Home/>} /> {/* rota padrao */}
       </Routes>
     </Router>
   )

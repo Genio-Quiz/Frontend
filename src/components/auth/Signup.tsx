@@ -19,17 +19,18 @@ const Signup = () => {
   const toggleConfirmPasswordVisibility = () => setShowConfirmPassword(!showConfirmPassword);
 
   return (
-    <div className="w-full h-screen flex items-center justify-center">
+    <div className="w-full min-h-screen flex flex-col items-center justify-center p-4">
       <div
         className="w-[90%] max-w-sm md:max-w-md lg:max-w-md p-5 
                 bg-white/10 backdrop-blur-md 
+                border border-white/20
                 flex-col flex items-center gap-3 
-                rounded-2xl shadow-lg shadow-slate-900/50"
+                rounded-2xl shadow-lg shadow-slate-900/50 mb-4"
       >
-        <span className="text-white text-3xl">Einstein Quiz</span>
+        <span className="text-white text-3xl font-bold">Sabichão</span>
         <h1 className="text-lg md:text-xl font-semibold">Registrar</h1>
         <p className="text-xs md:text-sm text-gray-500 text-center">
-          Já tem uma conta? <span className="text-white cursor-pointer hover:text-blue-400" onClick={()=>navigate("/login")}>Entrar</span>
+          Já tem uma conta? <span className="text-white cursor-pointer hover:text-blue-400" onClick={()=>navigate("/signin")}>Entrar</span>
         </p>
         <div className="w-full flex flex-col gap-3">
           {/* Email */}
@@ -86,7 +87,7 @@ const Signup = () => {
         </div>
 
         <button className="w-full bg-blue-600 p-2 rounded-xl mt-3 hover:bg-blue-700 text-sm md:text-base">
-          Entrar
+          Criar conta
         </button>
 
         <div className="relative w-full flex items-center justify-center py-3">
@@ -107,6 +108,7 @@ const Signup = () => {
           </div>
         </div>
       </div>
+
     </div>
   );
 };
