@@ -1,12 +1,22 @@
-import Login from './components/Login'
 import './App.css'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from './components/Home'
+import Signup from './components/auth/Signup'
+import Signin from './components/auth/Signin'
+import Equipe from './components/Equipe'
 
 function App() {
 
   return (
-    <div className="w-full">
-      <Login/>
-    </div>
+      <Router>
+      <Routes>
+        <Route path="/Home" element={<Home />} />
+        <Route path="/Signin" element={<Signin />} />
+        <Route path="/Signup" element={<Signup />} />
+        <Route path="/Equipe" element={<Equipe />} />
+        <Route path="*" element={<Home/>} /> {/* rota padrao */}
+      </Routes>
+    </Router>
   )
 }
 

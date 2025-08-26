@@ -2,8 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-body{ 
-  @apply bg-no-repeat bg-cover bg-center min-h-screen;
+body { 
+  @apply bg-no-repeat bg-cover bg-center;
   background: linear-gradient(135deg, #100a30, #092051, #144276);
   color: #fff;
 }
