@@ -61,7 +61,7 @@ const Signin = () => {
         </div>
         <div className="w-full flex items-center p-2 rounded-xl gap-3 relative">
           <p className="text-xs md:text-base text-gray-500">
-            Esqueceu sua senha? <span className="text-white cursor-pointer hover:text-blue-400">Redefina</span>
+            Esqueceu sua senha? <span className="text-white cursor-pointer hover:text-blue-400"onClick={()=>navigate("/forget")}>Redefina</span>
           </p>
         </div>
 

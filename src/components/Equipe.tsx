@@ -34,7 +34,7 @@ const Equipe = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <p className="text-gray-200 mb-2">
-                <strong className="text-white">URL:</strong> 
+                <strong className="text-white">URL:</strong> {''}
                 <a href="https://github.com/Genio-Quiz" className="text-blue-300 hover:underline" target="_blank" rel="noopener noreferrer">
                   https://github.com/Genio-Quiz
                 </a>

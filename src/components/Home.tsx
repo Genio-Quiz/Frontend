@@ -42,17 +42,17 @@ const Home = () => {
         </div>
         
         <div className="flex justify-between text-white gap-4 mt-6 h-[45%]">
-          <div className="w-[23%] h-full bg-red-500/20 rounded-2xl flex flex-col items-center justify-center border border-red-400/30 backdrop-blur-sm cursor-pointer hover:bg-red-800/30">
+          <div className="w-[23%] h-full bg-red-700 rounded-2xl flex flex-col items-center justify-center border border-red-400/30 backdrop-blur-sm cursor-pointer hover:bg-red-900">
             <BiMath className="text-4xl mb-2"/>
             <h1 className="text-lg font-bold">Matemática</h1> 
           </div>
-          <div className="w-[23%] h-full bg-green-500/20 rounded-2xl flex flex-col items-center justify-center border border-green-400/30 backdrop-blur-sm cursor-pointer hover:bg-green-800/30">
+          <div className="w-[23%] h-full bg-green-700 rounded-2xl flex flex-col items-center justify-center border border-green-400/30 backdrop-blur-sm cursor-pointer hover:bg-green-900">
             <h1 className="text-lg font-bold">Português</h1>            
           </div>
-          <div className="w-[23%] h-full bg-blue-500/20 rounded-2xl flex flex-col items-center justify-center border border-blue-400/30 backdrop-blur-sm cursor-pointer hover:bg-blue-800/30">
+          <div className="w-[23%] h-full bg-blue-700 rounded-2xl flex flex-col items-center justify-center border border-blue-400/30 backdrop-blur-sm cursor-pointer hover:bg-blue-800">
             <h1 className="text-lg font-bold">Historia</h1>
           </div>
-          <div className="w-[23%] h-full bg-yellow-500/20 rounded-2xl flex flex-col items-center justify-center border border-yellow-400/30 backdrop-blur-sm cursor-pointer hover:bg-yellow-800/30">
+          <div className="w-[23%] h-full bg-yellow-500 rounded-2xl flex flex-col items-center justify-center border border-yellow-400/30 backdrop-blur-sm cursor-pointer hover:bg-yellow-800">
             <BiCodeAlt className="text-4xl mb-2"/>
             <h1 className="text-lg font-bold">Programação</h1>
           </div>
