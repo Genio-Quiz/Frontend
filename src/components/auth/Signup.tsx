@@ -12,11 +12,38 @@ import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const navigate = useNavigate();
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
+  const [username, setUsername] = useState<string>("");
+  const [isAdmin, setAdmin] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
-  const toggleConfirmPasswordVisibility = () => setShowConfirmPassword(!showConfirmPassword);
+  const toggleConfirmPasswordVisibility = () =>
+    setShowConfirmPassword(!showConfirmPassword);
+
+  const handleSignUp = async () => {
+    if (!email || !username || !password || !confirmPassword) return;
+    if (confirmPassword != password) return;
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/auth/signup`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, username, password, isAdmin }),
+        }
+      );
+      const data = await response.json();
+      if (response.ok) navigate("/signin");
+      else alert(data.message || "Erro ao criar usuário");
+    } catch (error) {
+      console.error(error);
+      alert("Erro ao criar usuário");
+    }
+  };
 
   return (
     <div className="w-full min-h-screen flex flex-col items-center justify-center p-4">
@@ -30,7 +57,13 @@ const Signup = () => {
         <span className="text-white text-3xl font-bold">Sabichão</span>
         <h1 className="text-lg md:text-xl font-semibold">Registrar</h1>
         <p className="text-xs md:text-sm text-gray-500 text-center">
-          Já tem uma conta? <span className="text-white cursor-pointer hover:text-blue-400" onClick={()=>navigate("/signin")}>Entrar</span>
+          Já tem uma conta?{" "}
+          <span
+            className="text-white cursor-pointer hover:text-blue-400"
+            onClick={() => navigate("/signin")}
+          >
+            Entrar
+          </span>
         </p>
         <div className="w-full flex flex-col gap-3">
           {/* Email */}
@@ -40,6 +73,19 @@ const Signup = () => {
               type="email"
               placeholder="Insira seu e-mail"
               className="bg-transparent border-0 w-full outline-none text-sm md:text-base gap-3"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          {/* Username */}
+          <div className="w-full flex items-center bg-gray-800 p-2 rounded-xl gap-2">
+            <FaAt />
+            <input
+              type="email"
+              placeholder="Insira seu username"
+              className="bg-transparent border-0 w-full outline-none text-sm md:text-base gap-3"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
           </div>
 
@@ -50,6 +96,8 @@ const Signup = () => {
               type={showPassword ? "text" : "password"}
               placeholder="Invente sua senha"
               className="bg-transparent border-0 w-full outline-none text-sm md:text-base gap-3"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
             {showPassword ? (
               <FaRegEyeSlash
@@ -71,6 +119,8 @@ const Signup = () => {
               type={showConfirmPassword ? "text" : "password"}
               placeholder="Confirme sua senha"
               className="bg-transparent border-0 w-full outline-none text-sm md:text-base gap-3"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
             />
             {showConfirmPassword ? (
               <FaRegEyeSlash
@@ -86,7 +136,10 @@ const Signup = () => {
           </div>
         </div>
 
-        <button className="w-full bg-blue-600 p-2 rounded-xl mt-3 hover:bg-blue-700 text-sm md:text-base">
+        <button
+          className="w-full bg-blue-600 p-2 rounded-xl mt-3 hover:bg-blue-700 text-sm md:text-base"
+          onClick={handleSignUp}
+        >
           Criar conta
         </button>
 
@@ -108,7 +161,6 @@ const Signup = () => {
           </div>
         </div>
       </div>
-
     </div>
   );
 };
