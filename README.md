@@ -2,8 +2,8 @@
 
 Para rodar o projeto você vai precisar:
 
-- Crie uma pasta na sua de trabalho e arreste ela para o icone do vscode
-- No vscode use o comando Crtl + Shift + " para abrir o terminal no vscode
+- Crie uma pasta na sua área de trabalho e arreste ela para o icone do vscode
+- No vscode use o comando Crtl + Shift + " para abrir o terminal 
 ## Comandos para rodar o projeto no terminal
 
 ```bash
