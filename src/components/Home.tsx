@@ -45,7 +45,7 @@ const Home = () => {
         
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 sm:mb-[30px]">
-          <div className="flex items-center gap-3 text-4xl">
+          <div className="flex items-center gap-3 text-4xl cursor-pointer" onClick={()=>{navigate("/")}} >
             <FaBrain className="text-yellow-400" />
             <h1 className="font-['Fredoka_One'] font-bold">Sabichão</h1>
           </div>

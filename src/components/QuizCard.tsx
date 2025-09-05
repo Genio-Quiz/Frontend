@@ -4,7 +4,7 @@ export default function QuizCard({ icon, title, desc, grad, shadow }:{ icon: str
   const navigate = useNavigate();
 
   const acessarQuiz = () => {
-    navigate(`/equipe`);
+    navigate(`/signin`);
   };
 
   return (

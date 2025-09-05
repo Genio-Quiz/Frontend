@@ -5,6 +5,7 @@ import Signup from './components/auth/Signup'
 import Signin from './components/auth/Signin'
 import Equipe from './components/Equipe'
 import Forget from './components/auth/Forget'
+import ResetPassword from './components/auth/ResetPassword';
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
         <Route path="/Signin" element={<Signin />} />
         <Route path="/Signup" element={<Signup />} />
         <Route path="/Forget" element={<Forget />} />
+        <Route path="/ResetPassword" element={<ResetPassword />} />
         <Route path="/Equipe" element={<Equipe />} />
         <Route path="*" element={<Home/>} /> {/* rota padrao */}
       </Routes>
