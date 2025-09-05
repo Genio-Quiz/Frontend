@@ -5,12 +5,18 @@ import {
     FaGoogle,
     FaFacebook,
   } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { FaBrain } from "react-icons/fa";
  
   const Forget = () => {
-    
+    const navigate = useNavigate();
   
     return (
       <div className="w-full min-h-screen flex flex-col items-center justify-center p-4">
+        <div className="flex items-center gap-3 text-4xl absolute top-px left-px p-[22px] cursor-pointer" onClick={()=>{navigate("/")}} >
+                   <FaBrain className="text-yellow-400" />
+                   <h1 className="font-['Fredoka_One'] font-bold">Sabichão</h1>
+              </div>
         <div 
           className="w-[90%] max-w-sm md:max-w-md lg:max-w-md p-5 
                   bg-white/10 backdrop-blur-md 
@@ -36,7 +42,7 @@ import {
           </div>
   
           <button className="w-full bg-blue-600 p-2 rounded-xl mt-3 hover:bg-blue-700 text-sm md:text-base">
-            Enviar código
+            Enviar email
           </button>
   
           <div className="relative w-full flex items-center justify-center py-3">
