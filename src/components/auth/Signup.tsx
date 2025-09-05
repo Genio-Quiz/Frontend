@@ -94,7 +94,7 @@ const Signup = () => {
             <FaFingerprint />
             <input
               type={showPassword ? "text" : "password"}
-              placeholder="Invente sua senha"
+              placeholder="Crie sua senha"
               className="bg-transparent border-0 w-full outline-none text-sm md:text-base gap-3"
               value={password}
               onChange={(e) => setPassword(e.target.value)}

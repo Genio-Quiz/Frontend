@@ -62,6 +62,12 @@ const Home = () => {
             >
               Criar conta
             </button>
+            <button 
+              className="px-6 py-2 rounded-full font-bold text-sm md:text-base bg-pink-500 text-white hover:bg-white hover:text-pink-500 transition"
+              onClick={() => navigate("/quizeditor")}
+            >
+              Quiz editor
+            </button>
           </div>
         </div>
 
