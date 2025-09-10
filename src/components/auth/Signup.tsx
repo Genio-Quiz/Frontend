@@ -1,3 +1,4 @@
+import { FaBrain } from "react-icons/fa";
 import {
   FaAt,
   FaFingerprint,
@@ -47,6 +48,10 @@ const Signup = () => {
 
   return (
     <div className="w-full min-h-screen flex flex-col items-center justify-center p-4">
+      <div className="flex items-center gap-3 text-4xl absolute top-px left-px p-[22px] cursor-pointer" onClick={()=>{navigate("/")}} >
+                 <FaBrain className="text-yellow-400" />
+                 <h1 className="font-['Fredoka_One'] font-bold">Sabichão</h1>
+            </div>
       <div
         className="w-[90%] max-w-sm md:max-w-md lg:max-w-md p-5 
                 bg-white/10 backdrop-blur-md 

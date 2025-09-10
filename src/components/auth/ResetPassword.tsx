@@ -23,7 +23,7 @@ import {
                <FaFingerprint />
               <input
                 type="email"
-                placeholder="Insira seu e-mail"
+                placeholder="Insira sua nova senha"
                 className="bg-transparent border-0 w-full outline-none text-sm md:text-base gap-3"
               />
             </div>
@@ -31,14 +31,14 @@ import {
                <FaFingerprint />
               <input
                 type="email"
-                placeholder="Insira seu e-mail"
+                placeholder="Confirme sua senha"
                 className="bg-transparent border-0 w-full outline-none text-sm md:text-base gap-3"
               />
             </div>
           </div>
   
           <button className="w-full bg-blue-600 p-2 rounded-xl mt-3 hover:bg-blue-700 text-sm md:text-base">
-           Resetar
+           Confirmar
           </button>
   
           
