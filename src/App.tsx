@@ -5,12 +5,8 @@ import Signup from './components/auth/Signup'
 import Signin from './components/auth/Signin'
 import Equipe from './components/Equipe'
 import Forget from './components/auth/Forget'
-<<<<<<< HEAD
 import QuizEditor from './components/QuizEditor'
-
-=======
 import ResetPassword from './components/auth/ResetPassword';
->>>>>>> ff4227fcfb54606278436d216ad6c7aa99ea5e70
 
 function App() {
 
