@@ -10,17 +10,23 @@ import {
 } from "react-icons/fa";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { useAuth } from '../../contexts/AuthContext';
 const Signin = () => {
   const navigate = useNavigate();
+  const auth = useAuth();
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
-
   const handleSignIn = async () => {
     if (!username || !password) return;
-
+    // Lógica de teste: se for admin/1234, faz login sem backend.
+    if (username === 'admin' && password === '1234') {
+      auth.login({ name: 'admin' });
+      navigate("/Home");
+      return;
+    }
+    // Lógica para o backend
     try {
       const response = await fetch(
         `${import.meta.env.VITE_BACKEND_URL}/auth/login`,
@@ -31,10 +37,9 @@ const Signin = () => {
           body: JSON.stringify({ username, password }),
         }
       );
-
       const data = await response.json();
-
       if (response.ok) {
+        auth.login(data);
         navigate("/Home");
       } else {
         alert(data.message || "Erro ao fazer login");
@@ -44,7 +49,6 @@ const Signin = () => {
       alert("Erro ao fazer login");
     }
   };
-
   return (
     <div className="w-full min-h-screen flex flex-col items-center justify-center p-4">
       <div className="flex items-center gap-3 text-4xl absolute top-px left-px p-[22px] cursor-pointer" onClick={()=>{navigate("/")}} >
@@ -113,20 +117,17 @@ const Signin = () => {
             </span>
           </p>
         </div>
-
         <button
           className="w-full bg-blue-600 p-2 rounded-xl mt-3 hover:bg-blue-700 text-sm md:text-base"
           onClick={handleSignIn}
         >
           Entrar
         </button>
-
         <div className="relative w-full flex items-center justify-center py-3">
           <div className="w-2/3 h-[2px] bg-gray-800"></div>
           <h3 className="text-xs md:text-sm px-4 text-gray-500">Ou</h3>
           <div className="w-2/3 h-[2px] bg-gray-800"></div>
         </div>
-
         <div className="relative w-full flex items-center justify-between py-3">
           <div className="p-2 md:px-10 bg-slate-700 cursor-pointer rounded-xl hover:bg-slate-800">
             <FaApple className="text-lg md:text-xl" />
@@ -142,5 +143,4 @@ const Signin = () => {
     </div>
   );
 };
-
 export default Signin;
