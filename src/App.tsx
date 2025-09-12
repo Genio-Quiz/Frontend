@@ -1,29 +1,34 @@
-import './App.css'
+import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from './components/Home'
-import Signup from './components/auth/Signup'
-import Signin from './components/auth/Signin'
-import Equipe from './components/Equipe'
-import Forget from './components/auth/Forget'
-import QuizEditor from './components/QuizEditor'
+import Home from './components/Home';
+import Signup from './components/auth/Signup';
+import Signin from './components/auth/Signin';
+import Equipe from './components/Equipe';
+import Forget from './components/auth/Forget';
+import QuizEditor from './components/QuizEditor';
 import ResetPassword from './components/auth/ResetPassword';
-
+import PrivateRoute from './components/PrivateRoute';
 function App() {
-
   return (
-      <Router>
+    <Router>
       <Routes>
         <Route path="/Home" element={<Home />} />
         <Route path="/Signin" element={<Signin />} />
-        <Route path="/quizeditor" element={<QuizEditor />} /> {/* nova rota */}
+        <Route
+          path="/quizeditor"
+          element={
+            <PrivateRoute>
+              <QuizEditor />
+            </PrivateRoute>
+          }
+        />
         <Route path="/Signup" element={<Signup />} />
         <Route path="/Forget" element={<Forget />} />
         <Route path="/ResetPassword" element={<ResetPassword />} />
         <Route path="/Equipe" element={<Equipe />} />
-        <Route path="*" element={<Home/>} /> {/* rota padrao */}
+        <Route path="*" element={<Home/>} />
       </Routes>
     </Router>
-  )
+  );
 }
-
-export default App
+export default App;
