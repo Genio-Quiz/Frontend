@@ -1,150 +1,191 @@
-import React, { useState, type JSX } from "react";
+import React, { useState } from "react";
 
+type Answer = {
+  id: number;
+  text: string;
+  isCorrect: boolean;
+};
 
-// Tipagem da questão
-export type Question = {
+type Question = {
   id: number;
   title: string;
   body: string;
+  answers: Answer[];
 };
 
-export default function QuizEditor(): JSX.Element {
-  const [questions, setQuestions] = useState<Question[]>([
-    { id: 1, title: "lorem ipsum do...", body: "Escreva a pergunta aqui" },
-    { id: 2, title: "questão 2 é sob...", body: "escreva a questão aqui" },
-    { id: 3, title: "o conceito de es...", body: "" },
-    { id: 4, title: "questão 3 aqui.", body: "" },
-    { id: 5, title: "aiueo", body: "" },
-    { id: 6, title: "Eu dou pro Carli", body: "" },
-  ]);
+export default function QuizEditor() {
+  const [questions, setQuestions] = useState<Question[]>([]);
+  const [selected, setSelected] = useState<Question | null>(null);
 
-  const [selectedId, setSelectedId] = useState<number>(2);
-  const [subject, setSubject] = useState<string>("Matemática");
+  const addOrUpdateQuestion = () => {
+    if (!selected) return;
 
-  const selected = questions.find((q) => q.id === selectedId) || questions[0];
+    if (
+      selected.title.trim() === "" ||
+      selected.answers.every((a) => a.text.trim() === "") ||
+      !selected.answers.some((a) => a.isCorrect)
+    ) {
+      alert(
+        "Preencha o titulo e selecione a reposta correta"
+      );
+      return;
+    }
 
-  function addQuestion() {
-    const nextId = questions.length
-      ? Math.max(...questions.map((q) => q.id)) + 1
-      : 1;
-    const newQ: Question = {
+    setQuestions((prev) => {
+      const exists = prev.find((q) => q.id === selected.id);
+      if (exists) {
+        return prev.map((q) => (q.id === selected.id ? selected : q));
+      } else {
+        return [...prev, selected];
+      }
+    });
+  };
+
+  const selectQuestion = (id: number) => {
+    const q = questions.find((q) => q.id === id);
+    if (q) setSelected(q);
+  };
+
+  const newQuestion = () => {
+    const nextId = questions.length ? Math.max(...questions.map((q) => q.id)) + 1 : 1;
+    const emptyQuestion: Question = {
       id: nextId,
       title: `Questão ${nextId}`,
       body: "",
+      answers: [
+        { id: 1, text: "", isCorrect: false },
+        { id: 2, text: "", isCorrect: false },
+        { id: 3, text: "", isCorrect: false },
+        { id: 4, text: "", isCorrect: false },
+      ],
     };
-    setQuestions((s) => [...s, newQ]);
-    setSelectedId(newQ.id);
-  }
+    setSelected(emptyQuestion);
+  };
 
-  function updateSelectedBody(text: string) {
-    setQuestions((s) =>
-      s.map((q) => (q.id === selectedId ? { ...q, body: text } : q))
-    );
-  }
+  const updateTitle = (text: string) => {
+    if (!selected) return;
+    setSelected({ ...selected, title: text });
+  };
 
-  function updateSelectedTitle(text: string) {
-    setQuestions((s) =>
-      s.map((q) => (q.id === selectedId ? { ...q, title: text } : q))
+  const updateBody = (text: string) => {
+    if (!selected) return;
+    setSelected({ ...selected, body: text });
+  };
+
+  const updateAnswer = (answerId: number, newText: string) => {
+    if (!selected) return;
+    const newAnswers = selected.answers.map((a) =>
+      a.id === answerId ? { ...a, text: newText } : a
     );
-  }
+    setSelected({ ...selected, answers: newAnswers });
+  };
+
+  const markCorrect = (answerId: number) => {
+    if (!selected) return;
+    const newAnswers = selected.answers.map((a) => ({
+      ...a,
+      isCorrect: a.id === answerId,
+    }));
+    setSelected({ ...selected, answers: newAnswers });
+  };
 
   return (
-    <div className="w-full min-h-screen bg-gray-200 flex items-start justify-center p-6">
-      <div className="max-w-6xl w-full bg-gray-100 rounded shadow-lg flex overflow-hidden">
-        {/* LEFT SIDEBAR */}
-        <aside className="w-72 bg-white border-r border-gray-200 p-4 flex flex-col">
-          <label className="text-gray-500 text-sm">Matéria</label>
-          <select
-            value={subject}
-            onChange={(e) => setSubject(e.target.value)}
-            className="mt-2 mb-4 rounded border px-3 py-2 text-lg font-semibold"
-          >
-            <option>Matemática</option>
-            <option>Português</option>
-            <option>Ciências</option>
-          </select>
+    <div className="min-h-screen bg-gradient-to-tr from-[#1A1A2E] via-[#16213E] to-[#E94560] p-8 flex justify-center">
+      <div className="w-full max-w-6xl bg-gray-900 bg-opacity-80 shadow-lg rounded-xl flex overflow-hidden text-gray-100">
+        <aside className="w-72 border-r border-gray-700 p-4 flex flex-col">
+          <h2 className="text-2xl font-bold mb-4 text-pink-500 font-brand">Editor de Quiz</h2>
 
-          <div className="flex-1 overflow-auto">
-            <h4 className="text-gray-500 mb-2">Questões</h4>
-            <ul className="space-y-3">
-              {questions.map((q, i) => (
+          <button
+            onClick={newQuestion}
+            className="mb-4 bg-pink-600 hover:bg-pink-700 text-white font-semibold py-2 rounded-full transition"
+          >
+            + Nova Questão
+          </button>
+
+          <div className="flex-1 overflow-auto scrollbar-thin scrollbar-thumb-pink-500 scrollbar-track-gray-800">
+            <ul className="space-y-2">
+              {questions.map((q) => (
                 <li key={q.id}>
                   <button
-                    onClick={() => setSelectedId(q.id)}
-                    className={`w-full text-left rounded px-3 py-2 flex items-center gap-3 ${
-                      q.id === selectedId
-                        ? "bg-white border border-blue-600 shadow"
-                        : "bg-gray-200 text-gray-700"
-                    }`}
+                    onClick={() => selectQuestion(q.id)}
+                    className={`w-full text-left px-3 py-2 rounded ${
+                      selected?.id === q.id
+                        ? "bg-pink-700 text-white border border-pink-400"
+                        : "bg-gray-800 hover:bg-gray-700"
+                    } transition`}
                   >
-                    <span className="text-sm text-gray-600 mr-2">{i + 1}</span>
-                    <span className="truncate font-medium">{q.title}</span>
+                    {q.title}
                   </button>
                 </li>
               ))}
             </ul>
           </div>
-
-          <div className="mt-4">
-            <button
-              onClick={addQuestion}
-              className="w-full rounded-lg border border-gray-200 py-2 text-green-600 font-semibold bg-white"
-            >
-              Adicionar questão
-            </button>
-          </div>
         </aside>
 
-        {/* MAIN AREA */}
-        <main className="flex-1 p-8">
-          <h1 className="text-2xl font-extrabold text-gray-800 text-center mb-6">
-            Questão {selected?.id}
-          </h1>
+        <main className="flex-1 p-8 overflow-auto flex flex-col">
+          {selected ? (
+            <>
+              <input
+                className="text-2xl font-bold w-full mb-4 border-b border-pink-500 bg-transparent text-white outline-none placeholder-pink-300"
+                value={selected.title}
+                onChange={(e) => updateTitle(e.target.value)}
+                placeholder="Título da Questão"
+              />
 
-          <div className="bg-white border border-blue-200 rounded p-4 mb-6">
-            <input
-              value={selected?.title ?? ""}
-              onChange={(e) => updateSelectedTitle(e.target.value)}
-              className="w-full text-lg font-bold mb-2 outline-none"
-              placeholder="Título da questão"
-            />
+              <textarea
+                className="w-full p-3 border border-pink-500 rounded mb-6 resize-none bg-gray-800 text-white placeholder-pink-400 outline-none"
+                rows={4}
+                placeholder="Enunciado da pergunta..."
+                value={selected.body}
+                onChange={(e) => updateBody(e.target.value)}
+              />
 
-            <textarea
-              value={selected?.body ?? ""}
-              onChange={(e) => updateSelectedBody(e.target.value)}
-              rows={6}
-              className="w-full bg-gray-50 border border-blue-200 rounded p-4 text-base resize-none outline-none"
-              placeholder="Escreva a questão aqui"
-            />
-          </div>
+              <h3 className="text-xl font-semibold text-pink-400 mb-4">Alternativas</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                {selected.answers.map((answer) => (
+                  <div key={answer.id} className="flex items-start gap-3">
+                    <input
+                      type="radio"
+                      name={`correct-${selected.id}`}
+                      checked={answer.isCorrect}
+                      onChange={() => markCorrect(answer.id)}
+                      className="mt-2 accent-pink-500"
+                    />
+                    <textarea
+                      className={`flex-1 p-2 rounded border resize-none bg-gray-700 text-white placeholder-pink-300 outline-none ${
+                        answer.isCorrect
+                          ? "border-green-500"
+                          : "border-pink-600"
+                      }`}
+                      rows={2}
+                      placeholder={`Resposta ${answer.id}`}
+                      value={answer.text}
+                      onChange={(e) => updateAnswer(answer.id, e.target.value)}
+                    />
+                  </div>
+                ))}
+              </div>
 
-          <h3 className="text-blue-600 font-bold mb-4">Respostas</h3>
-
-          <div className="flex gap-6 flex-wrap">
-            <AnswerCard colorClass="bg-red-500" label="Resposta 1" />
-            <AnswerCard colorClass="bg-blue-500" label="Resposta 2" />
-            <AnswerCard colorClass="bg-green-400" label="Resposta 3" />
-            <AnswerCard colorClass="bg-yellow-400" label="Resposta 4" />
-          </div>
+              <button
+                onClick={addOrUpdateQuestion}
+                className="self-start bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded-full transition"
+              >
+                Salvar Questão
+              </button>
+              <button
+                onClick={addOrUpdateQuestion}
+                className="self-start bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-6 rounded-full transition"
+              >
+                Excluir Questão
+              </button>
+            </>
+          ) : (
+            <p className="text-gray-300 text-center text-lg mt-20">
+              Selecione ou adicione uma questão para editar.
+            </p>
+          )}
         </main>
       </div>
-    </div>
-  );
-}
-
-// Componente para respostas
-function AnswerCard({
-  colorClass,
-  label,
-}: {
-  colorClass: string;
-  label: string;
-}) {
-  return (
-    <div
-      className={`w-40 h-40 rounded-lg shadow-md ${colorClass} p-4 text-white flex items-start`}
-    >
-      <div className="font-bold leading-tight">{label}</div>
     </div>
   );
 }
