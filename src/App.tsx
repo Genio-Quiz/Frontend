@@ -8,6 +8,7 @@ import Forget from './components/auth/Forget';
 import QuizEditor from './components/QuizEditor';
 import ResetPassword from './components/auth/ResetPassword';
 import PrivateRoute from './components/PrivateRoute';
+import User from "./components/User"
 function App() {
   return (
     <Router>
@@ -22,6 +23,7 @@ function App() {
             </PrivateRoute>
           }
         />
+        <Route path="/User" element={<User/>} />
         <Route path="/Signup" element={<Signup />} />
         <Route path="/Forget" element={<Forget />} />
         <Route path="/ResetPassword" element={<ResetPassword />} />
