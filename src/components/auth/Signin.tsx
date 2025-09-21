@@ -10,7 +10,7 @@ import {
 } from "react-icons/fa";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from '../../contexts/AuthContext';
+import useAuth from "../../contexts/Auth/useAuth";
 const Signin = () => {
   const navigate = useNavigate();
   const auth = useAuth();
@@ -20,13 +20,6 @@ const Signin = () => {
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
   const handleSignIn = async () => {
     if (!username || !password) return;
-    // Lógica de teste: se for admin/1234, faz login sem backend.
-    if (username === 'admin' && password === '1234') {
-      auth.login({ name: 'admin' });
-      navigate("/Home");
-      return;
-    }
-    // Lógica para o backend
     try {
       const response = await fetch(
         `${import.meta.env.VITE_BACKEND_URL}/auth/login`,
@@ -38,8 +31,9 @@ const Signin = () => {
         }
       );
       const data = await response.json();
+      const token = data.token;
       if (response.ok) {
-        auth.login(data);
+        auth.login(token);
         navigate("/Home");
       } else {
         alert(data.message || "Erro ao fazer login");
@@ -51,9 +45,9 @@ const Signin = () => {
   };
   return (
     <div className="w-full min-h-screen flex flex-col items-center justify-center p-4">
-      <div className="flex items-center gap-3 text-4xl absolute top-px left-px p-[22px] cursor-pointer" onClick={()=>{navigate("/")}} >
-           <FaBrain className="text-yellow-400" />
-           <h1 className="font-['Fredoka_One'] font-bold">Sabichão</h1>
+      <div className="flex items-center gap-3 text-4xl absolute top-px left-px p-[22px] cursor-pointer" onClick={() => { navigate("/") }} >
+        <FaBrain className="text-yellow-400" />
+        <h1 className="font-['Fredoka_One'] font-bold">Sabichão</h1>
       </div>
       <div
         className="w-[90%] max-w-sm md:max-w-md lg:max-w-md p-5 

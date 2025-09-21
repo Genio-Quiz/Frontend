@@ -1,11 +1,11 @@
 import { FaBrain } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import QuizCard from "./QuizCard";
-import { useAuth } from "../contexts/AuthContext";
 import samuel from "../assets/samuel.png"
 import points3 from "../assets/3points.png"
 import edit from "../assets/edit.png"
-const User = () => {
+import useAuth from "../contexts/Auth/useAuth";
+export default function User() {
   const navigate = useNavigate();
   const auth = useAuth();
   const quizInfo = [
@@ -90,26 +90,26 @@ const User = () => {
           </div>
         </div>
         <div className="flex-1 flex flex-col items-center justify-center">
-            <div className="w-[90%] flex justify-between">
-        <div className="w-auto  shadow-xl  border-white/20 mb-1 flex gap-[10px] items-end">
+          <div className="w-[90%] flex justify-between">
+            <div className="w-auto  shadow-xl  border-white/20 mb-1 flex gap-[10px] items-end">
 
-        <div className="h-[100px] aspect-square overflow-hidden
+              <div className="h-[100px] aspect-square overflow-hidden
             rounded-[10px] center-items justify-center flex" >
-            <img src={samuel}  className="h=[100%]"/>
-        </div>
-        <h1 className="text-[20px] font-bold">Name</h1>
-        <p className="text-[15px] text-gray-400">Email</p>
-        </div>
-        <div className="flex items-center">
-            <button className="flex p-[6px] gap-[10px] border-solid border-[2px] rounded-[10px]
+                <img src={samuel} className="h=[100%]" />
+              </div>
+              <h1 className="text-[20px] font-bold">{auth.user?.username}</h1>
+              <p className="text-[15px] text-gray-400">{auth.user?.email}</p>
+            </div>
+            <div className="flex items-center">
+              <button className="flex p-[6px] gap-[10px] border-solid border-[2px] rounded-[10px]
     ">
-                <img src={edit} className="h-[20px]"/>
+                <img src={edit} className="h-[20px]" />
                 Editar</button>
-            <button>
-                <img src={points3} className="h-[25px]"/>
-            </button>
-        </div>
-        </div>
+              <button>
+                <img src={points3} className="h-[25px]" />
+              </button>
+            </div>
+          </div>
           <div className="w-full bg-white/10 backdrop-blur-md rounded-3xl p-10 shadow-xl border border-white/20 mb-10">
             <h1 className="text-2xl font-bold">Minhas infos</h1>
             <h3>
@@ -149,4 +149,3 @@ const User = () => {
     </div>
   );
 };
-export default User;

@@ -1,9 +1,9 @@
 import { FaBrain } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import QuizCard from "./QuizCard";
-import { useAuth } from "../contexts/AuthContext";
+import useAuth from "../contexts/Auth/useAuth";
 
-const Home = () => {
+export default function Home () {
   const navigate = useNavigate();
   const auth = useAuth();
   const quizInfo = [
@@ -123,4 +123,3 @@ const Home = () => {
     </div>
   );
 };
-export default Home;
