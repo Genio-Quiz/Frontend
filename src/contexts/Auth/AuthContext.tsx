@@ -55,6 +55,12 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     setUser(userData);
   };
   const logout = () => {
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/auth/logout`, {
+      method: "POST",
+      credentials: "include",
+    }).catch((err) => {
+      alert("Erro ao deslogar \r \n" + err);
+    });
     setUser(null);
   };
   const value = { user, login, logout };
