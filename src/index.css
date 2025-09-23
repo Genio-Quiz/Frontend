@@ -4,6 +4,6 @@
 
 body { 
   @apply bg-no-repeat bg-cover bg-center;
-  background: linear-gradient(135deg, #0c3840, #161d4e, #95185d);
+  background-color: linear-gradient(135deg, #0c3840, #161d4e, #95185d);
   color: #fff;
 };

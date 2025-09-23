@@ -1,11 +1,8 @@
-import { FaBrain } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import QuizCard from "./QuizCard";
-import useAuth from "../contexts/Auth/useAuth";
 
-export default function Home () {
+export default function Home() {
   const navigate = useNavigate();
-  const auth = useAuth();
   const quizInfo = [
     {
       icon: "calculate",
@@ -36,56 +33,19 @@ export default function Home () {
       shadow: "hover:shadow-purple-500/50"
     }
   ];
-  
+
   return (
-    <div className="h-screen w-full flex flex-col items-center justify-center font-['Roboto'] relative overflow-x-hidden overflow-y-scroll">
-      
+    <>
+
       {/* Area das Bolinhas */}
-      <div className="absolute top-10 left-0 w-52 h-52 bg-yellow-400 rounded-full opacity-30 animate-pulse -translate-x-1/2 -translate-y-1/2" />
-      <div className="absolute bottom-0 right-0 w-72 h-72 bg-pink-500 rounded-full opacity-30 animate-pulse delay-75 translate-x-1/2 translate-y-1/2" />
-      <div className="absolute top-2/5 right-15 w-40 h-40 bg-cyan-400 rounded-full opacity-30 animate-pulse delay-150 translate-x-1/2 -translate-y-1/2" />
-      <div className="relative z-10 w-full max-w-[1400px] h-full flex flex-col px-6 py-6 mx-auto">
-        
-        {/* Area de Navegação */}
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 sm:mb-[30px]">
-          <div className="flex items-center gap-3 text-4xl cursor-pointer" onClick={()=>{navigate("/")}} >
-            <FaBrain className="text-yellow-400" />
-            <h1 className="font-['Fredoka_One'] font-bold">Sabichão</h1>
-          </div>
-          <div className="flex gap-3 flex-wrap justify-center mb-2">
-            {auth.user ? (
-              <>
-                <button 
-                  className="px-6 py-2 rounded-full font-bold text-sm md:text-base bg-pink-500 text-white hover:bg-white hover:text-pink-500 transition"
-                  onClick={() => navigate("/quizeditor")}
-                >
-                  Quiz editor
-                </button>
-                <button 
-                  className="px-6 py-2 rounded-full font-bold text-sm md:text-base bg-transparent border-2 border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black transition"
-                  onClick={auth.logout}
-                >
-                  Sair
-                </button>
-              </>
-            ) : (
-              <>
-                <button 
-                  className="px-6 py-2 rounded-full font-bold text-sm md:text-base bg-transparent border-2 border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black transition"
-                  onClick={() => navigate("/signin")}
-                >
-                  Entrar
-                </button>
-                <button 
-                  className="px-6 py-2 rounded-full font-bold text-sm md:text-base bg-pink-500 text-white hover:bg-white hover:text-pink-500 transition"
-                  onClick={() => navigate("/signup")}
-                >
-                  Criar conta
-                </button>
-              </>
-            )}
-          </div>
-        </div>
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-60 left-20 w-52 h-52 bg-yellow-400 rounded-full opacity-30 animate-pulse -translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute bottom-0 right-0 w-72 h-72 bg-pink-500 rounded-full opacity-30 animate-pulse delay-75 translate-x-1/2 translate-y-1/2" />
+        <div className="absolute top-2/5 right-15 w-40 h-40 bg-cyan-400 rounded-full opacity-30 animate-pulse delay-150 translate-x-1/2 -translate-y-1/2" />
+      </div>
+
+
+      <div className="relative w-full h-full flex flex-col px-6 py-6 mx-auto">
 
         {/* Area de Conteudo */}
         <div className="flex-1 flex flex-col items-center justify-center">
@@ -103,23 +63,23 @@ export default function Home () {
           {/* Quizes */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 w-full">
             {quizInfo.map((category, index) => (
-            <QuizCard
-              key={index}
-              icon={category.icon}
-              title={category.title}
-              desc={category.desc}
-              grad={category.grad}
-              shadow={category.shadow}
-            />
-          ))}
+              <QuizCard
+                key={index}
+                icon={category.icon}
+                title={category.title}
+                desc={category.desc}
+                grad={category.grad}
+                shadow={category.shadow}
+              />
+            ))}
           </div>
 
-        {/* Footer */}
-        <div className="mt-4 text-center text-gray-400 text-sm">
-          © {new Date().getFullYear()} <span className="cursor-pointer hover:text-blue-400" onClick={()=>navigate("/equipe")}>Sabichão</span>. Todos os direitos reservados.
+          {/* Footer */}
+          <div className="mt-4 text-center text-gray-400 text-sm">
+            © {new Date().getFullYear()} <span className="cursor-pointer hover:text-blue-400" onClick={() => navigate("/equipe")}>Sabichão</span>. Todos os direitos reservados.
+          </div>
         </div>
       </div>
-    </div>
-    </div>
+    </>
   );
 };

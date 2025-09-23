@@ -50,7 +50,7 @@ const Signin = () => {
         <h1 className="font-['Fredoka_One'] font-bold">Sabichão</h1>
       </div>
       <div
-        className="w-[90%] max-w-sm md:max-w-md lg:max-w-md p-5 
+        className="max-w-sm md:max-w-md lg:max-w-md p-5 
                 bg-white/10 backdrop-blur-md 
                 border border-white/20
                 flex-col flex items-center gap-3 
@@ -122,7 +122,7 @@ const Signin = () => {
           <h3 className="text-xs md:text-sm px-4 text-gray-500">Ou</h3>
           <div className="w-2/3 h-[2px] bg-gray-800"></div>
         </div>
-        <div className="relative w-full flex items-center justify-between py-3">
+        <div className="relative w-full flex items-center justify-between py-3 gap-4">
           <div className="p-2 md:px-10 bg-slate-700 cursor-pointer rounded-xl hover:bg-slate-800">
             <FaApple className="text-lg md:text-xl" />
           </div>

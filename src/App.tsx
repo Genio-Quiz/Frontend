@@ -9,26 +9,31 @@ import QuizEditor from './pages/QuizEditor';
 import ResetPassword from './components/auth/ResetPassword';
 import PrivateRoute from './pages/PrivateRoute';
 import User from "./pages/User"
+import Layout from './Layout';
+
+
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/Home" element={<Home />} />
+        <Route element={<Layout />}>
+          <Route path="/Home" element={<Home />} />
+          <Route
+            path="/quizeditor"
+            element={
+              <PrivateRoute>
+                <QuizEditor />
+              </PrivateRoute>
+            }
+          />
+          <Route path="/Equipe" element={<Equipe />} />
+          <Route path="*" element={<Home />} />
+          <Route path="/User" element={<User />} />
+          <Route path="/Forget" element={<Forget />} />
+          <Route path="/ResetPassword" element={<ResetPassword />} />
+        </Route>
         <Route path="/Signin" element={<Signin />} />
-        <Route
-          path="/quizeditor"
-          element={
-            <PrivateRoute>
-              <QuizEditor />
-            </PrivateRoute>
-          }
-        />
-        <Route path="/User" element={<User />} />
         <Route path="/Signup" element={<Signup />} />
-        <Route path="/Forget" element={<Forget />} />
-        <Route path="/ResetPassword" element={<ResetPassword />} />
-        <Route path="/Equipe" element={<Equipe />} />
-        <Route path="*" element={<Home />} />
       </Routes>
     </Router>
   );

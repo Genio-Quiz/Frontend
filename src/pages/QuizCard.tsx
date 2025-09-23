@@ -5,7 +5,6 @@ export default function QuizCard({ icon, title, desc, grad, shadow }:{ icon: str
 
   const acessarQuiz = () => {
     navigate(`/quiz/${title}`);
-    {/*navigate(`/quiz${title.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()}`);*/}
   };
 
   return (
