@@ -72,7 +72,7 @@ const Signin = () => {
             <FaAt />
             <input
               type="username"
-              placeholder="Insira seu email"
+              placeholder="Insira seu username"
               className="bg-transparent border-0 w-full outline-none text-sm md:text-base gap-3"
               onChange={(e) => setUsername(e.target.value)}
               value={username}

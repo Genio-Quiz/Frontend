@@ -9,6 +9,7 @@ import QuizEditor from './pages/QuizEditor';
 import ResetPassword from './components/auth/ResetPassword';
 import PrivateRoute from './pages/PrivateRoute';
 import User from "./pages/User"
+import RankingGeral from './pages/RankingGeral';
 function App() {
   return (
     <Router>
@@ -28,6 +29,7 @@ function App() {
         <Route path="/Forget" element={<Forget />} />
         <Route path="/ResetPassword" element={<ResetPassword />} />
         <Route path="/Equipe" element={<Equipe />} />
+        <Route path="/RankingGeral" element={<RankingGeral />} />
         <Route path="*" element={<Home />} />
       </Routes>
     </Router>
