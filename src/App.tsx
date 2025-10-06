@@ -9,7 +9,8 @@ import QuizEditor from './pages/QuizEditor';
 import ResetPassword from './components/auth/ResetPassword';
 import PrivateRoute from './pages/PrivateRoute';
 import User from "./pages/User"
-import RankingGeral from './pages/RankingGeral';
+import RankingGeral from './pages/RankingGeral'
+import Task from "./pages/Task.jsx"
 function App() {
   return (
     <Router>
@@ -24,6 +25,7 @@ function App() {
             </PrivateRoute>
           }
         />
+        <Route path="/Exercise" element={<Task />} />
         <Route path="/User" element={<User />} />
         <Route path="/Signup" element={<Signup />} />
         <Route path="/Forget" element={<Forget />} />
