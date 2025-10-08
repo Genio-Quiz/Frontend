@@ -2,6 +2,19 @@ import { useEffect, useState } from "react";
 
 export default function ExercisePage() {
     const [time, setTime] = useState(0);
+    const [boxValue, setBoxValue] = useState<number|null>(null)
+    const handleResponse = async () => {
+        if (!boxValue) return;
+        try {
+            const response = await fetch(
+                `${import.meta.env.VITE_BACKEND_URL}/`
+            )
+        } catch (err){
+            console.error(err);
+            alert("Erro ao enviar Quiz")
+            
+        }
+    }
 
     useEffect(() => {
         const interval = setInterval(() => setTime((t) => t + 1), 1000);
@@ -42,7 +55,7 @@ export default function ExercisePage() {
                                 key={index}
                                 className="flex items-center gap-3 bg-white/10 border border-white/20 hover:border-white/40 rounded-xl px-4 py-3 cursor-pointer transition-all duration-200"
                             >
-                                <input type="checkbox" className="w-5 h-5 accent-pink-500 rounded-[10px]" />
+                                <input type="checkbox" className="w-5 h-5 accent-pink-500 rounded-[10px]" onClick={()=>setBoxValue(index)} value={opt}/>
                                 <span className="text-gray-100">{opt} (placeholder)</span>
                             </label>
                         ))}
@@ -51,6 +64,7 @@ export default function ExercisePage() {
             
                     <button
                         className="mt-8 w-full bg-gradient-to-r from-yellow-400 to-pink-500 text-white font-bold py-3 rounded-xl shadow-lg hover:opacity-90 transition-all"
+                        onClick={handleResponse}
                     >
                         Enviar Resposta
                     </button>

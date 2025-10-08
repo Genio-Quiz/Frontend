@@ -1,8 +1,8 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from './pages/Home';
-import Signup from './components/auth/Signup';
-import Signin from './components/auth/Signin';
+import Signup from './pages/Signup.js';
+import Signin from './pages/Signin.js';
 import Equipe from './pages/Equipe';
 import Forget from './components/auth/Forget';
 import QuizEditor from './pages/QuizEditor';
@@ -10,7 +10,7 @@ import ResetPassword from './components/auth/ResetPassword';
 import PrivateRoute from './pages/PrivateRoute';
 import User from "./pages/User"
 import RankingGeral from './pages/RankingGeral'
-import Task from "./pages/Task.jsx"
+import ExercisePage from './pages/Task.js';
 function App() {
   return (
     <Router>
@@ -25,7 +25,7 @@ function App() {
             </PrivateRoute>
           }
         />
-        <Route path="/Exercise" element={<Task />} />
+        <Route path="/Exercise" element={<ExercisePage />} />
         <Route path="/User" element={<User />} />
         <Route path="/Signup" element={<Signup />} />
         <Route path="/Forget" element={<Forget />} />

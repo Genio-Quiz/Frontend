@@ -10,7 +10,7 @@ import {
 } from "react-icons/fa";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import useAuth from "../../contexts/Auth/useAuth";
+import useAuth from "../contexts/Auth/useAuth";
 const Signin = () => {
   const navigate = useNavigate();
   const auth = useAuth();
